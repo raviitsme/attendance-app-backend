@@ -14,6 +14,16 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    role: {
+        type: String,
+        enum: ["student", "teacher", "uni_admin", "super_admin"],
+        default: "student"
+    },
+    university : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "University",
+        required : true
+    },
     department : String,
     year : Number
 }, { timestamps : true });

@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
 import University from "../models/University.js";
+import generateUniCode from "../utils/generateUniCode.js";
 
 export const registerUser = async (req, res) => {
     try {
@@ -93,7 +94,7 @@ export const loginUser = async (req, res) => {
 
 export const registerUniversity = async (req, res) => {
     try {
-        const { universityName, adminName, email, phone, location, password } = req.body;
+        const { uniName, adminName, email, phone, location, password } = req.body;
         const uniExists = await University.findOne({ email });
 
         if (uniExists) {
@@ -104,13 +105,15 @@ export const registerUniversity = async (req, res) => {
         }
 
         const hashedPass = await bcrypt.hash(password, 10);
-
+        const uniCode = await generateUniCode();
+        console.log("Generated Code:", uniCode);
         const university = await University.create({
-            uniName : universityName,
+            uniName : uniName,
             adminName,
             email,
             phone,
             location,
+            uniCode
         });
 
         await User.create({

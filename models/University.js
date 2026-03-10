@@ -23,6 +23,11 @@ const universitySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    uniCode: {
+        type: String,
+        required: true,
+        unique: true
+    },
     status: {
         type: String,
         enum: ["active", "inactive", "pending"],

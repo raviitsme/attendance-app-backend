@@ -11,8 +11,11 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors({
-  origin : "*", 
-  credentials : true
+  origin: [
+    "http://localhost:5173",
+    "https://attendance-app-seven-azure.vercel.app"
+  ],
+  credentials: true
 }));
 app.use(express.json());
 

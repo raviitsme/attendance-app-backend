@@ -5,6 +5,8 @@ import authRoutes from './routes/authRoutes.js';
 import connectDB from './config/db.js';
 import dotenv from 'dotenv';
 dotenv.config();
+const PORT = process.env.PORT || 3000;
+
 
 const app = express();
 
@@ -22,6 +24,6 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRoutes);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Listening at http://localhost:3000");
 });

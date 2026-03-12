@@ -22,7 +22,6 @@ const userSchema = new mongoose.Schema({
     university : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "University",
-        required : true
     },
     department : String,
     year : Number
